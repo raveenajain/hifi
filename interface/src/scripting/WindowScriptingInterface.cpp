@@ -11,6 +11,9 @@
 
 #include "WindowScriptingInterface.h"
 
+#include <iostream>
+#include <fstream>
+
 #include <QClipboard>
 #include <QtCore/QDir>
 #include <QMessageBox>
@@ -407,6 +410,10 @@ QString WindowScriptingInterface::checkVersion() {
 }
 
 QString WindowScriptingInterface::protocolSignature() {
+    std::ofstream signatureFile;
+    signatureFile.open("protocol_signature.txt");
+    signatureFile << protocolVersionsSignatureBase64().constData() << std::endl;
+    signatureFile.close();
     return protocolVersionsSignatureBase64();
 }
 
