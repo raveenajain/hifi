@@ -38,7 +38,7 @@ public slots:
     void disable(bool disable);
     void logAction(QString action, QJsonObject details = QJsonObject(), JSONCallbackParameters params = JSONCallbackParameters());
     
-    void launch(QString applicationVersion, bool previousSessionCrashed, int previousSessionRuntime);
+    void launch(QString applicationVersion, int glContextDataVersion, bool previousSessionCrashed, int previousSessionRuntime);
 
     void insufficientGLVersion(const QJsonObject& glData);
     
