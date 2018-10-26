@@ -35,6 +35,7 @@
 #include "assets/ATPAssetMigrator.h"
 #include "audio/AudioScope.h"
 #include "avatar/AvatarManager.h"
+#include "avatar/MyAvatar.h"
 #include "AvatarBookmarks.h"
 #include "devices/DdeFaceTracker.h"
 #include "MainWindow.h"
@@ -513,6 +514,25 @@ Menu::Menu() {
 
     // Developer > Avatar >>>
     MenuWrapper* avatarDebugMenu = developerMenu->addMenu("Avatar");
+    
+    auto avatarManagerX = DependencyManager::get<AvatarManager>();
+    auto avatarX = avatarManagerX->getMyAvatar();
+    
+    // Developer > Avatar > Sizing
+    MenuWrapper* sizingMenu = avatarDebugMenu->addMenu("Sizing");
+    
+    {
+        MenuWrapper* increaseAvatarSizeMenu = sizingMenu->addMenu("Increase Avatar Size");
+        addActionToQMenuAndActionHash(increaseAvatarSizeMenu,
+                                      MenuOption::IncreaseAvatarSize, 0,
+                                      qApp, SLOT(increaseSize()));
+        
+        MenuWrapper* decreaseAvatarSizeMenu = sizingMenu->addMenu("Decrease Avatar Size");
+        addActionToQMenuAndActionHash(decreaseAvatarSizeMenu,
+                                      MenuOption::DecreaseAvatarSize, 0,
+                                      qApp, SLOT(decreaseSize()));
+    }
+    
 
     // Developer > Avatar > Face Tracking
     MenuWrapper* faceTrackingMenu = avatarDebugMenu->addMenu("Face Tracking");
