@@ -515,9 +515,6 @@ Menu::Menu() {
     // Developer > Avatar >>>
     MenuWrapper* avatarDebugMenu = developerMenu->addMenu("Avatar");
     
-    auto avatarManagerX = DependencyManager::get<AvatarManager>();
-    auto avatarX = avatarManagerX->getMyAvatar();
-    
     // Developer > Avatar > Sizing
     MenuWrapper* sizingMenu = avatarDebugMenu->addMenu("Sizing");
     
