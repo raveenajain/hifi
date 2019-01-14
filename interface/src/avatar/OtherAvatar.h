@@ -10,6 +10,7 @@
 #define hifi_OtherAvatar_h
 
 #include <memory>
+#include <vector>
 
 #include <avatars-renderer/Avatar.h>
 #include <workload/Space.h>
@@ -49,9 +50,17 @@ public:
 
     void setCollisionGroupFlag();
 
+    void simulate(float deltaTime, bool inView) override;
+
     friend AvatarManager;
 
 protected:
+    void handleChangedAvatarEntityData();
+    void updateAttachedAvatarEntities();
+    void onAddAttachedAvatarEntity(const QUuid& id);
+    void onRemoveAttachedAvatarEntity(const QUuid& id);
+
+    std::vector<QUuid> _attachedAvatarEntities;
     std::shared_ptr<Sphere3DOverlay> _otherAvatarOrbMeshPlaceholder { nullptr };
     OverlayID _otherAvatarOrbMeshPlaceholderID { UNKNOWN_OVERLAY_ID };
     AvatarMotionState* _motionState { nullptr };
