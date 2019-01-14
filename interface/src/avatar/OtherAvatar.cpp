@@ -12,7 +12,6 @@
 #include "AvatarMotionState.h"
 
 static glm::u8vec3 getLoadingOrbColor(Avatar::LoadingStatus loadingStatus) {
-
     const glm::u8vec3 NO_MODEL_COLOR(0xe3, 0xe3, 0xe3);
     const glm::u8vec3 LOAD_MODEL_COLOR(0xef, 0x93, 0xd1);
     const glm::u8vec3 LOAD_SUCCESS_COLOR(0x1f, 0xc6, 0xa6);
@@ -130,16 +129,6 @@ void OtherAvatar::rebuildCollisionShape() {
     }
 }
 
-void OtherAvatar::updateCollisionGroup(bool myAvatarCollide) {
-    if (_motionState) {
-        bool collides = _motionState->getCollisionGroup() == BULLET_COLLISION_GROUP_OTHER_AVATAR && myAvatarCollide;
-        if (_collideWithOtherAvatars != collides) {
-            if (!myAvatarCollide) {
-                _collideWithOtherAvatars = false;
-            }
-            auto newCollisionGroup = _collideWithOtherAvatars ? BULLET_COLLISION_GROUP_OTHER_AVATAR : BULLET_COLLISION_GROUP_COLLISIONLESS;
-            _motionState->setCollisionGroup(newCollisionGroup);
-            _motionState->addDirtyFlags(Simulation::DIRTY_COLLISION_GROUP);
-        }
-    }
+void OtherAvatar::setCollisionGroupFlag() {
+    _motionState->addDirtyFlags(Simulation::DIRTY_COLLISION_GROUP);
 }

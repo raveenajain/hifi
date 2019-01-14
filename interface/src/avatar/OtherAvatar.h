@@ -45,7 +45,9 @@ public:
     bool shouldBeInPhysicsSimulation() const;
     bool needsPhysicsUpdate() const;
 
-    void updateCollisionGroup(bool myAvatarCollide);
+    bool getCollideWithOtherAvatars() const { return _collideWithOtherAvatars; } 
+
+    void setCollisionGroupFlag();
 
     friend AvatarManager;
 
