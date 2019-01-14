@@ -137,23 +137,8 @@ void OtherAvatar::rebuildCollisionShape() {
     }
 }
 
-<<<<<<< HEAD
 void OtherAvatar::setCollisionGroupFlag() {
     _motionState->addDirtyFlags(Simulation::DIRTY_COLLISION_GROUP);
-}
-=======
-void OtherAvatar::updateCollisionGroup(bool myAvatarCollide) {
-    if (_motionState) {
-        bool collides = _motionState->getCollisionGroup() == BULLET_COLLISION_GROUP_OTHER_AVATAR && myAvatarCollide;
-        if (_collideWithOtherAvatars != collides) {
-            if (!myAvatarCollide) {
-                _collideWithOtherAvatars = false;
-            }
-            auto newCollisionGroup = _collideWithOtherAvatars ? BULLET_COLLISION_GROUP_OTHER_AVATAR : BULLET_COLLISION_GROUP_COLLISIONLESS;
-            _motionState->setCollisionGroup(newCollisionGroup);
-            _motionState->addDirtyFlags(Simulation::DIRTY_COLLISION_GROUP);
-        }
-    }
 }
 
 void OtherAvatar::simulate(float deltaTime, bool inView) {
@@ -444,4 +429,3 @@ void OtherAvatar::updateAttachedAvatarEntities() {
         }
     }
 }
->>>>>>> a115af63533a2f6855d5e9ac365ff4d984f9bcef
