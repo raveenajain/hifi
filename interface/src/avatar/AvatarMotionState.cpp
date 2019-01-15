@@ -172,7 +172,7 @@ QUuid AvatarMotionState::getSimulatorID() const {
 // virtual
 void AvatarMotionState::computeCollisionGroupAndMask(int32_t& group, int32_t& mask) const {
     group = _collisionGroup;
-    mask = _avatar->getCollideWithOtherAvatars() ? 0 : BULLET_COLLISION_MASK_OTHER_AVATAR; 
+    mask = _avatar->getCollideWithOtherAvatars() ? BULLET_COLLISION_MASK_OTHER_AVATAR : 0;
 }
 
 // virtual
